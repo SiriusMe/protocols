@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SSE Client</title>
+</head>
+<body>
+    <h2>SSE Client</h2>
+    <div id="sse-data">Temperature:</div>
+    
+    <script>
+        const sseData = document.getElementById('sse-data');
+        const eventSource = new EventSource('http://172.18.100.240:8989/sse');
+
+        eventSource.onmessage = function(event) {
+            sseData.innerHTML = `Temperature: ${event.data}`;
+        };
+
+        eventSource.onerror = function(event) {
+            if (event.target.readyState === EventSource.CLOSED) {
+                sseData.innerHTML += '<br>SSE Connection Closed.';
+            } else {
+                sseData.innerHTML += '<br>Error occurred in SSE connection.';
+            }
+        };
+    </script>
+</body>
+</html>

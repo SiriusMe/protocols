@@ -1,0 +1,180 @@
+[
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Request",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "WebSocket",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "asyncio",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "asyncio",
+        "description": "asyncio",
+        "detail": "asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "StreamingResponse",
+        "importPath": "fastapi.responses",
+        "description": "fastapi.responses",
+        "isExtraImport": true,
+        "detail": "fastapi.responses",
+        "documentation": {}
+    },
+    {
+        "label": "StaticFiles",
+        "importPath": "fastapi.staticfiles",
+        "description": "fastapi.staticfiles",
+        "isExtraImport": true,
+        "detail": "fastapi.staticfiles",
+        "documentation": {}
+    },
+    {
+        "label": "CORSMiddleware",
+        "importPath": "starlette.middleware.cors",
+        "description": "starlette.middleware.cors",
+        "isExtraImport": true,
+        "detail": "starlette.middleware.cors",
+        "documentation": {}
+    },
+    {
+        "label": "WebSocketDisconnect",
+        "importPath": "starlette.websockets",
+        "description": "starlette.websockets",
+        "isExtraImport": true,
+        "detail": "starlette.websockets",
+        "documentation": {}
+    },
+    {
+        "label": "LongPollingManager",
+        "kind": 6,
+        "importPath": "Long-polling.main",
+        "description": "Long-polling.main",
+        "peekOfCode": "class LongPollingManager:\n    def __init__(self):\n        self.queue = asyncio.Queue()\n    async def wait_for_update(self):\n        return await self.queue.get()\n    def send_update(self, data):\n        self.queue.put_nowait(data)\nlong_polling_manager = LongPollingManager()\n@app.get(\"/poll\")\nasync def poll_for_updates():",
+        "detail": "Long-polling.main",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "Long-polling.main",
+        "description": "Long-polling.main",
+        "peekOfCode": "app = FastAPI()\nclass LongPollingManager:\n    def __init__(self):\n        self.queue = asyncio.Queue()\n    async def wait_for_update(self):\n        return await self.queue.get()\n    def send_update(self, data):\n        self.queue.put_nowait(data)\nlong_polling_manager = LongPollingManager()\n@app.get(\"/poll\")",
+        "detail": "Long-polling.main",
+        "documentation": {}
+    },
+    {
+        "label": "long_polling_manager",
+        "kind": 5,
+        "importPath": "Long-polling.main",
+        "description": "Long-polling.main",
+        "peekOfCode": "long_polling_manager = LongPollingManager()\n@app.get(\"/poll\")\nasync def poll_for_updates():\n    result = await long_polling_manager.wait_for_update()\n    return {\"update\": result}\n@app.post(\"/send-update\")\nasync def send_update(data: dict):\n    long_polling_manager.send_update(data)\n    return {\"message\": \"Update sent successfully\"}\n# uvicorn main:app --host 172.18.100.240 --port 8999",
+        "detail": "Long-polling.main",
+        "documentation": {}
+    },
+    {
+        "label": "Client",
+        "kind": 6,
+        "importPath": "SSE.main",
+        "description": "SSE.main",
+        "peekOfCode": "class Client:\n    def __init__(self):\n        self.message_queue = asyncio.Queue()\n@app.post(\"/send_message\")\nasync def send_message(message: str):\n    for client in clients:\n        await client.message_queue.put(message)\n    return {\"message\": \"Message sent to all clients\"}\n# uvicorn main:app --reload --host 172.18.100.240 --port 8989",
+        "detail": "SSE.main",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "SSE.main",
+        "description": "SSE.main",
+        "peekOfCode": "app = FastAPI()\nclients = []\n# Serve static files from the \"static\" directory\napp.mount(\"/static\", StaticFiles(directory=\"static\"), name=\"static\")\n@app.get(\"/sse\")\nasync def sse(request: Request):\n    response = StreamingResponse(\n        sse_generator(),\n        media_type=\"text/event-stream\",\n        headers={\"Cache-Control\": \"no-cache\", \"Connection\": \"keep-alive\"},",
+        "detail": "SSE.main",
+        "documentation": {}
+    },
+    {
+        "label": "clients",
+        "kind": 5,
+        "importPath": "SSE.main",
+        "description": "SSE.main",
+        "peekOfCode": "clients = []\n# Serve static files from the \"static\" directory\napp.mount(\"/static\", StaticFiles(directory=\"static\"), name=\"static\")\n@app.get(\"/sse\")\nasync def sse(request: Request):\n    response = StreamingResponse(\n        sse_generator(),\n        media_type=\"text/event-stream\",\n        headers={\"Cache-Control\": \"no-cache\", \"Connection\": \"keep-alive\"},\n    )",
+        "detail": "SSE.main",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "websockets.main",
+        "description": "websockets.main",
+        "peekOfCode": "app = FastAPI()\n# Add CORS middleware to allow connections from any origin\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],\n    allow_methods=[\"*\"],\n    allow_headers=[\"*\"],\n)\n# List to store WebSocket clients\nclients = []",
+        "detail": "websockets.main",
+        "documentation": {}
+    },
+    {
+        "label": "clients",
+        "kind": 5,
+        "importPath": "websockets.main",
+        "description": "websockets.main",
+        "peekOfCode": "clients = []\n@app.websocket(\"/ws\")\nasync def websocket_endpoint(websocket: WebSocket):\n    # Accept the WebSocket connection\n    await websocket.accept()\n    # Add the WebSocket client to the list\n    clients.append(websocket)\n    try:\n        while True:\n            # Generate a random float between 10 and 200",
+        "detail": "websockets.main",
+        "documentation": {}
+    }
+]

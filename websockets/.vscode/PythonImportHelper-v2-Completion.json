@@ -1,0 +1,35 @@
+[
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "WebSocket",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "CORSMiddleware",
+        "importPath": "starlette.middleware.cors",
+        "description": "starlette.middleware.cors",
+        "isExtraImport": true,
+        "detail": "starlette.middleware.cors",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "app = FastAPI()\n# Add CORS middleware to allow connections from any origin\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],\n    allow_methods=[\"*\"],\n    allow_headers=[\"*\"],\n)\n@app.websocket(\"/ws\")\nasync def websocket_endpoint(websocket: WebSocket):",
+        "detail": "main",
+        "documentation": {}
+    }
+]

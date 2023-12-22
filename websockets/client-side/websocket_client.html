@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Client</title>
+    <style>
+        .temperature-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>WebSocket Client</h1>
+    
+    <div class="temperature-box">
+        <span id="temperature-label">Temperature:</span> 
+        <span id="websocket-data"></span>
+    </div>
+
+    <script>
+        const websocketData = document.getElementById('websocket-data');
+        const temperatureLabel = document.getElementById('temperature-label');
+        const socket = new WebSocket("ws://172.18.100.240:8000/ws");
+
+        socket.onopen = (event) => {
+            console.log("WebSocket connection opened:", event);
+        };
+
+        socket.onmessage = (event) => {
+            console.log("WebSocket message received:", event.data);
+
+            // Display the received data in the HTML
+            websocketData.textContent = event.data;
+        };
+
+        socket.onclose = (event) => {
+            console.log("WebSocket connection closed:", event);
+        };
+    </script>
+</body>
+</html>
